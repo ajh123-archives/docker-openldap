@@ -7,7 +7,7 @@ RUN     apk update --no-cache && apk add -U --no-cache \
                 m4 make musl-dev pcre-dev perl sqlite-dev util-linux-dev libuuid
  
 ARG     CPPFLAGS="-D_FORTIFY_SOURCE=2"
-ARG     CFLAGS="-pipe -march=x86-64-v2 -O2 -fstack-protector-strong -fstack-clash-protection -fpic -ftree-vectorize"
+ARG     CFLAGS="-pipe -O2 -fstack-protector-strong -fstack-clash-protection -fpic -ftree-vectorize"
 ARG     CXXFLAGS="${CFLAGS}"
 ARG     LDFLAGS="-Wl,-z,relro -Wl,-z,now -Wl,--as-needed -Wl,-S -Wl,-O2 -Wl,--enable-new-dtags"
  
@@ -18,7 +18,6 @@ RUN     wget https://www.openssl.org/source/openssl-3.0.5.tar.gz &&\
         mkdir -pv src && tar xf *tar* -C src --strip-components=1 &&\
         cd src &&\
         perl ./Configure \
-                #linux-x86_64 \
                 --prefix=/usr/local \
                 --libdir=/usr/local/lib \
                 --openssldir=/usr/local/etc/ssl \
