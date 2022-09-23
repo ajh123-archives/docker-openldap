@@ -1,0 +1,10 @@
+  ldap_server:
+    build: .
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - /mnt/data_all/ldap/config/:/config
+      - /mnt/data_all/ldap/data/:/data
+      - /mnt/data_all/ldap/ssl/:/ssl
+      - /mnt/data_all/ldap/socket/:/socket
